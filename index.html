@@ -91,7 +91,19 @@ nav.scrolled .hamburger span{background:var(--brown)}
 .menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
 .menu-card{background:var(--white);border-radius:18px;overflow:hidden;border:1px solid rgba(107,52,16,0.08);transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column}
 .menu-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(107,52,16,0.14)}
-.menu-card-hero{height:155px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.menu-card-hero{height:155px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden} .menu-card-hero img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.gallery-card img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
 .menu-emoji{font-size:4.5rem;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));transition:transform 0.4s}
 .menu-card:hover .menu-emoji{transform:scale(1.15) rotate(-5deg)}
 .menu-price{position:absolute;top:10px;right:10px;background:var(--amber);color:var(--white);font-weight:700;font-size:0.78rem;padding:0.28rem 0.7rem;border-radius:50px}
@@ -342,7 +354,7 @@ footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.
 
       <div class="menu-card fade-in" data-cat="pastries">
         <div class="menu-card-hero" style="background:linear-gradient(135deg,#3d1c00,#8B4513)">
-          <span class="menu-emoji">🍩</span>
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800" alt="Chocolate Donut">
           <span class="menu-price">₹50</span>
           <div class="veg-dot"><div class="veg-dot-inner"></div></div>
         </div>
@@ -356,7 +368,7 @@ footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.
 
       <div class="menu-card fade-in" data-cat="cakes">
         <div class="menu-card-hero" style="background:linear-gradient(135deg,#C8780A,#FFD166)">
-          <span class="menu-emoji">🎂</span>
+          <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800" alt="Butterscotch Cake">
           <span class="menu-price">₹300</span>
           <div class="veg-dot"><div class="veg-dot-inner"></div></div>
         </div>
@@ -370,7 +382,7 @@ footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.
 
       <div class="menu-card fade-in" data-cat="burgers">
         <div class="menu-card-hero" style="background:linear-gradient(135deg,#4a2000,#8B4513)">
-          <span class="menu-emoji">🍔</span>
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800" alt="Classic Burger">
           <span class="menu-price">₹150</span>
         </div>
         <div class="menu-card-body">
@@ -383,7 +395,7 @@ footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.
 
       <div class="menu-card fade-in" data-cat="sandwiches">
         <div class="menu-card-hero" style="background:linear-gradient(135deg,#2e5c1e,#4caf50)">
-          <span class="menu-emoji">🥪</span>
+         <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=800" alt="Veg Sandwich">
           <span class="menu-price">₹80</span>
           <div class="veg-dot"><div class="veg-dot-inner"></div></div>
         </div>
@@ -397,7 +409,7 @@ footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.
 
       <div class="menu-card fade-in" data-cat="sweets">
         <div class="menu-card-hero" style="background:linear-gradient(135deg,#7b1fa2,#ce93d8)">
-          <span class="menu-emoji">🍮</span>
+         <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800" alt="Gulab Jamun">
           <span class="menu-price">₹60</span>
           <div class="veg-dot"><div class="veg-dot-inner"></div></div>
         </div>
@@ -411,7 +423,7 @@ footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.
 
       <div class="menu-card fade-in" data-cat="cakes">
         <div class="menu-card-hero" style="background:linear-gradient(135deg,#880e4f,#f48fb1)">
-          <span class="menu-emoji">🎁</span>
+          <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=800" alt="Custom Cake">
           <span class="menu-price">₹450+</span>
           <div class="veg-dot"><div class="veg-dot-inner"></div></div>
         </div>
@@ -434,27 +446,27 @@ footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.
     <h2 class="section-title">A Feast for the Eyes</h2>
     <div class="gallery-grid">
       <div class="gallery-card" style="background:linear-gradient(135deg,#3d1c00,#8B4513)">
-        <span style="font-size:5rem">🍩</span>
+        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=800" alt="Fresh Donuts">
         <div class="gallery-card-label">Fresh Donuts</div>
       </div>
       <div class="gallery-card" style="background:linear-gradient(135deg,#C8780A,#FFD166)">
-        <span style="font-size:5rem">🎂</span>
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800" alt="Custom Cakes">
         <div class="gallery-card-label">Custom Cakes</div>
       </div>
       <div class="gallery-card" style="background:linear-gradient(135deg,#2e5c1e,#66bb6a)">
-        <span style="font-size:5rem">🥪</span>
+        <img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=800" alt="Sandwiches">
         <div class="gallery-card-label">Sandwiches</div>
       </div>
       <div class="gallery-card" style="background:linear-gradient(135deg,#4a2000,#8B4513)">
-        <span style="font-size:5rem">🍔</span>
+      <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800" alt="Burgers">
         <div class="gallery-card-label">Burgers</div>
       </div>
       <div class="gallery-card" style="background:linear-gradient(135deg,#7b1fa2,#ba68c8)">
-        <span style="font-size:5rem">🍮</span>
+        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=800" alt="Indian Sweets">
         <div class="gallery-card-label">Indian Sweets</div>
       </div>
       <div class="gallery-card" style="background:linear-gradient(135deg,#1a237e,#5c6bc0)">
-        <span style="font-size:5rem">☕</span>
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800" alt="Coffee">
         <div class="gallery-card-label">Hot Beverages</div>
       </div>
     </div>
