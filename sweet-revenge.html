@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sweet Revenge Bake 'N' Cafe – Ananthnagar, Bangalore</title>
+<meta name="description" content="Sweet Revenge Bake N Cafe – Your favourite neighbourhood bakery in Ananthnagar, Electronic City, Bangalore.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --brown:#6B3410;--brown-dark:#3d1c00;--brown-mid:#8B4513;
+  --amber:#C8780A;--amber-light:#F5A623;--gold:#FFD166;
+  --cream:#FFF8EE;--cream-dark:#F5EDD8;--cream-mid:#FAF0DC;
+  --white:#ffffff;--text:#1e0f00;--text-muted:#6b4c30;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-thumb{background:var(--brown-mid);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0.9rem 1.5rem;transition:background 0.4s,box-shadow 0.4s}
+nav.scrolled{background:rgba(255,248,238,0.97);backdrop-filter:blur(12px);box-shadow:0 1px 20px rgba(107,52,16,0.12)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--white);text-decoration:none;transition:color 0.4s;display:flex;align-items:center;gap:0.4rem}
+nav.scrolled .nav-logo{color:var(--brown)}
+.nav-links{display:flex;gap:1.2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.85);text-decoration:none;transition:color 0.3s}
+nav.scrolled .nav-links a{color:var(--text-muted)}
+.nav-links a:hover{color:var(--gold)}
+nav.scrolled .nav-links a:hover{color:var(--brown)}
+.nav-cta{background:var(--amber-light)!important;color:var(--brown-dark)!important;padding:0.45rem 1.1rem!important;border-radius:50px;font-weight:700!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);border-radius:2px;transition:0.3s}
+nav.scrolled .hamburger span{background:var(--brown)}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:7rem 1.5rem 4rem;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg-svg{width:100%;height:100%;display:block}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,10,0,0.7) 0%,rgba(61,28,0,0.88) 100%);z-index:1}
+.hero-content{position:relative;z-index:2;max-width:640px}
+.hero-badge{display:inline-flex;align-items:center;gap:0.4rem;background:rgba(255,209,102,0.18);border:1px solid rgba(255,209,102,0.4);color:var(--gold);font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;padding:0.4rem 1rem;border-radius:50px;margin-bottom:1.5rem}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,9vw,4.8rem);font-weight:900;color:var(--white);line-height:1.05;margin-bottom:0.5rem}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:1rem;color:rgba(255,255,255,0.75);margin:1rem 0 1.5rem;line-height:1.7}
+.hero-rating{display:inline-flex;align-items:center;gap:0.5rem;background:rgba(255,255,255,0.1);border-radius:50px;padding:0.4rem 1rem;margin-bottom:1.75rem;font-size:0.82rem;color:rgba(255,255,255,0.85)}
+.hero-stars{color:var(--gold)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--amber-light);color:var(--brown-dark);font-weight:700;font-size:0.88rem;padding:0.9rem 2rem;border-radius:50px;text-decoration:none;border:none;cursor:pointer;transition:transform 0.2s,background 0.2s;display:inline-flex;align-items:center;gap:0.5rem;box-shadow:0 4px 20px rgba(200,120,10,0.4)}
+.btn-primary:hover{background:var(--gold);transform:translateY(-3px)}
+.btn-outline{background:transparent;color:var(--white);font-weight:700;font-size:0.88rem;padding:0.9rem 2rem;border-radius:50px;text-decoration:none;border:2px solid rgba(255,255,255,0.45);cursor:pointer;transition:border-color 0.2s,transform 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-outline:hover{border-color:white;transform:translateY(-3px)}
+
+/* TICKER */
+.ticker{background:var(--brown-dark);padding:0.65rem 0;overflow:hidden;border-top:2px solid var(--amber);border-bottom:2px solid var(--amber)}
+.ticker-inner{display:flex;gap:2.5rem;white-space:nowrap;animation:ticker 20s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{font-size:0.78rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);flex-shrink:0}
+
+/* STATS */
+.stats-strip{background:var(--brown);padding:2.5rem 1.5rem}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;max-width:600px;margin:0 auto;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold)}
+.stat-label{font-size:0.75rem;color:rgba(255,255,255,0.65);margin-top:0.2rem;font-weight:500}
+
+/* SECTIONS */
+.section{padding:5rem 1.5rem}
+.container{max-width:720px;margin:0 auto}
+.section-label{font-size:0.72rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:0.6rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,5vw,2.5rem);font-weight:700;color:var(--brown-dark);line-height:1.15;margin-bottom:0.75rem}
+.section-sub{font-size:0.9rem;color:var(--text-muted);line-height:1.7;margin-bottom:1.5rem}
+
+/* ABOUT */
+.about{background:var(--white)}
+.about-visual{border-radius:20px;overflow:hidden;margin-bottom:2rem;height:240px;position:relative;background:linear-gradient(135deg,#7B3F00 0%,#C8780A 100%);display:flex;align-items:center;justify-content:center}
+.about-visual-inner{text-align:center;color:var(--white)}
+.about-visual-icon{font-size:5rem;display:block;margin-bottom:0.5rem}
+.about-visual-text{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--gold)}
+.about-visual-sub{font-size:0.85rem;color:rgba(255,255,255,0.75);margin-top:0.3rem}
+.about-badge{position:absolute;bottom:1rem;right:1rem;background:var(--brown-dark);color:var(--gold);font-size:0.75rem;font-weight:700;padding:0.45rem 1rem;border-radius:50px;border:1px solid var(--amber)}
+.about-text{font-size:0.95rem;color:var(--text-muted);line-height:1.85;margin-bottom:1rem}
+.about-text strong{color:var(--brown)}
+
+/* MENU CARDS with illustrated backgrounds */
+.menu-section{background:var(--cream);position:relative}
+.menu-bg{position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(200,120,10,0.06) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(107,52,16,0.06) 0%,transparent 50%);pointer-events:none}
+.filter-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;margin:1.25rem 0 1.75rem}
+.filter-tab{padding:0.45rem 1.1rem;border-radius:50px;border:1.5px solid rgba(107,52,16,0.25);background:transparent;color:var(--text-muted);font-size:0.78rem;font-weight:700;cursor:pointer;transition:0.2s;font-family:'DM Sans',sans-serif}
+.filter-tab.active,.filter-tab:hover{background:var(--brown);color:var(--white);border-color:var(--brown)}
+.menu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+.menu-card{background:var(--white);border-radius:18px;overflow:hidden;border:1px solid rgba(107,52,16,0.08);transition:transform 0.25s,box-shadow 0.25s;display:flex;flex-direction:column}
+.menu-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(107,52,16,0.14)}
+.menu-card-hero{height:155px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.menu-emoji{font-size:4.5rem;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.15));transition:transform 0.4s}
+.menu-card:hover .menu-emoji{transform:scale(1.15) rotate(-5deg)}
+.menu-price{position:absolute;top:10px;right:10px;background:var(--amber);color:var(--white);font-weight:700;font-size:0.78rem;padding:0.28rem 0.7rem;border-radius:50px}
+.veg-dot{position:absolute;top:10px;left:10px;width:18px;height:18px;background:var(--white);border:2px solid #2e7d32;border-radius:3px;display:flex;align-items:center;justify-content:center}
+.veg-dot-inner{width:8px;height:8px;background:#2e7d32;border-radius:50%}
+.menu-card-body{padding:0.9rem;flex:1;display:flex;flex-direction:column}
+.menu-cat{font-size:0.68rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--amber);margin-bottom:0.3rem}
+.menu-card-body h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--brown-dark);margin-bottom:0.3rem}
+.menu-card-body p{font-size:0.75rem;color:var(--text-muted);line-height:1.5;margin-bottom:0.75rem;flex:1}
+.btn-order{width:100%;background:var(--brown);color:var(--white);border:none;border-radius:50px;padding:0.6rem;font-size:0.78rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s;text-decoration:none;display:block;text-align:center}
+.btn-order:hover{background:var(--brown-dark)}
+
+/* GALLERY - SVG illustrated cards */
+.gallery-section{background:var(--brown-dark);padding:5rem 1.5rem}
+.gallery-section .section-label{color:var(--gold)}
+.gallery-section .section-title{color:var(--white);margin-bottom:2rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.gallery-card{border-radius:16px;overflow:hidden;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform 0.3s;position:relative}
+.gallery-card:hover{transform:scale(1.04)}
+.gallery-card-label{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;font-size:0.72rem;font-weight:700;padding:1rem 0.75rem 0.6rem;text-align:center}
+
+/* WHY */
+.why-section{background:linear-gradient(135deg,var(--brown-dark) 0%,#5a2000 100%);padding:5rem 1.5rem}
+.why-section .section-label{color:var(--gold)}
+.why-section .section-title{color:var(--white)}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2rem}
+.why-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,209,102,0.2);border-radius:16px;padding:1.5rem 1.1rem;text-align:center;transition:background 0.3s,transform 0.3s}
+.why-card:hover{background:rgba(255,255,255,0.12);transform:translateY(-4px)}
+.why-icon{font-size:2rem;margin-bottom:0.8rem;display:block}
+.why-card h3{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.4rem}
+.why-card p{font-size:0.78rem;color:rgba(255,255,255,0.65);line-height:1.6}
+
+/* OFFERS */
+.offers-section{background:var(--cream-mid)}
+.offers-grid{display:grid;gap:1rem;margin-top:1.5rem}
+.offer-card{background:var(--white);border-radius:16px;overflow:hidden;display:flex;align-items:stretch;border:1px solid rgba(107,52,16,0.1);transition:transform 0.2s}
+.offer-card:hover{transform:translateY(-3px)}
+.offer-stripe{width:6px;flex-shrink:0}
+.offer-body{padding:1.1rem 1rem;flex:1}
+.offer-badge{display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:50px;margin-bottom:0.5rem}
+.offer-body h3{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--brown-dark);margin-bottom:0.3rem}
+.offer-body p{font-size:0.82rem;color:var(--text-muted);line-height:1.6}
+
+/* INFO */
+.info-section{background:var(--white)}
+.info-card{background:var(--cream);border-radius:18px;padding:1.5rem;margin-top:1.5rem;border:1px solid rgba(107,52,16,0.1)}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:0.8rem 0;border-bottom:1px solid rgba(107,52,16,0.08);font-size:0.88rem;flex-wrap:wrap;gap:0.5rem}
+.info-row:last-child{border-bottom:none}
+.info-label{color:var(--text-muted);font-weight:700}
+.tags-wrap{display:flex;gap:0.4rem;flex-wrap:wrap;justify-content:flex-end}
+.tag{background:#FFF3E0;color:var(--brown);border-radius:50px;padding:0.2rem 0.65rem;font-size:0.72rem;font-weight:700}
+.tag-green{background:#E8F5E9;color:#2e7d32}
+
+/* REVIEWS */
+.reviews-section{background:var(--cream-dark)}
+.rating-summary{text-align:center;margin-bottom:2rem;background:var(--brown-dark);border-radius:16px;padding:1.5rem;color:var(--white)}
+.rating-big{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--gold)}
+.rating-stars-big{color:var(--gold);font-size:1.2rem;letter-spacing:3px}
+.rating-count{font-size:0.8rem;color:rgba(255,255,255,0.6);margin-top:0.3rem}
+.reviews-grid{display:flex;flex-direction:column;gap:1rem}
+.review-card{background:var(--white);border-radius:16px;padding:1.25rem;border:1px solid rgba(107,52,16,0.08);position:relative}
+.review-quote{position:absolute;top:0.5rem;right:1.25rem;font-family:'Playfair Display',serif;font-size:4rem;color:rgba(200,120,10,0.1);line-height:1}
+.stars{color:var(--amber-light);font-size:0.9rem;margin-bottom:0.75rem;letter-spacing:2px}
+.review-text{font-size:0.88rem;color:var(--text-muted);line-height:1.75;font-style:italic;margin-bottom:0.75rem}
+.reviewer-name{font-weight:700;font-size:0.85rem;color:var(--brown)}
+.reviewer-date{font-size:0.72rem;color:var(--text-muted);margin-top:0.1rem}
+
+/* VISIT */
+.visit-section{background:var(--cream)}
+.visit-card{background:var(--white);border-radius:18px;padding:1.5rem;margin-top:1.5rem;border:1px solid rgba(107,52,16,0.1)}
+.visit-row{display:flex;gap:1rem;align-items:flex-start;padding:0.85rem 0;border-bottom:1px solid rgba(107,52,16,0.08)}
+.visit-row:last-of-type{border-bottom:none}
+.visit-icon{width:38px;height:38px;background:#FFF3E0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.visit-label{font-weight:700;font-size:0.82rem;color:var(--brown);margin-bottom:0.2rem}
+.visit-val{font-size:0.85rem;color:var(--text-muted);line-height:1.6}
+.visit-val a{color:var(--brown);text-decoration:none;font-weight:700}
+.map-container{margin-top:1.25rem;border-radius:14px;overflow:hidden;height:200px;background:linear-gradient(135deg,#e8d5b0,#c4956a);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;text-align:center;padding:1.5rem}
+.map-icon{font-size:2.5rem}
+.map-text{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--brown-dark)}
+.map-sub{font-size:0.78rem;color:var(--text-muted)}
+.btn-directions{display:flex;align-items:center;justify-content:center;gap:0.5rem;background:var(--brown);color:var(--white);font-weight:700;font-size:0.88rem;padding:0.85rem;border-radius:50px;text-decoration:none;margin-top:1rem;transition:background 0.2s}
+.btn-directions:hover{background:var(--brown-dark)}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--brown-dark) 0%,var(--brown) 50%,var(--amber) 100%);padding:5rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-inner{position:relative;z-index:1;max-width:560px;margin:0 auto}
+.cta-section .section-label{color:var(--gold)}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,6vw,2.6rem);font-weight:900;color:var(--white);line-height:1.15;margin-bottom:0.75rem}
+.cta-section p{font-size:0.95rem;color:rgba(255,255,255,0.8);margin-bottom:2rem;line-height:1.7}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.cta-circles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.cta-circle{position:absolute;border-radius:50%;background:rgba(255,255,255,0.05)}
+
+/* FOOTER */
+footer{background:var(--brown-dark);color:rgba(255,255,255,0.65);padding:3rem 1.5rem 2rem;text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:0.3rem}
+.footer-tagline{font-size:0.75rem;color:var(--gold);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin:1.25rem 0;flex-wrap:wrap}
+.footer-links a{font-size:0.8rem;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-divider{height:1px;background:rgba(255,255,255,0.1);margin:1.25rem 0}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem}
+.footer-copy{font-size:0.73rem;color:rgba(255,255,255,0.3)}
+.footer-credit{font-size:0.73rem;color:rgba(255,209,102,0.45)}
+
+/* FLOATS */
+.whatsapp-float{position:fixed;bottom:1.5rem;right:1.5rem;z-index:900;background:#25D366;color:white;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.45);transition:transform 0.2s;animation:waPulse 3s ease-in-out infinite}
+@keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,0.45)}50%{box-shadow:0 4px 32px rgba(37,211,102,0.7)}}
+.whatsapp-float:hover{transform:scale(1.12)}
+.call-float{position:fixed;bottom:1.5rem;left:1.5rem;z-index:900;background:var(--amber);color:white;border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;box-shadow:0 4px 20px rgba(200,120,10,0.4);transition:transform 0.2s}
+.call-float:hover{transform:scale(1.12)}
+.back-to-top{position:fixed;bottom:5.5rem;right:1.5rem;z-index:800;background:var(--brown);color:var(--white);border:none;border-radius:50%;width:40px;height:40px;font-size:1rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(107,52,16,0.3)}
+.back-to-top.show{display:flex}
+
+/* ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:none}
+
+@media(max-width:640px){
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--cream);padding:1rem 1.5rem;border-bottom:2px solid var(--amber);gap:0.8rem}
+  .nav-links.open{display:flex}
+  nav.scrolled .nav-links a,.nav-links a{color:var(--text-muted)}
+  .hamburger{display:flex}
+  .menu-grid{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-bottom{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">🍰 Sweet Revenge</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#visit" class="nav-cta">Order Now 🛒</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- HERO with SVG background -->
+<section class="hero">
+  <div class="hero-bg">
+    <svg class="hero-bg-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="hg1" cx="30%" cy="40%" r="60%"><stop offset="0%" stop-color="#8B4513"/><stop offset="100%" stop-color="#3d1c00"/></radialGradient>
+        <radialGradient id="hg2" cx="80%" cy="20%" r="50%"><stop offset="0%" stop-color="#C8780A" stop-opacity="0.6"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+      </defs>
+      <rect width="800" height="600" fill="url(#hg1)"/>
+      <rect width="800" height="600" fill="url(#hg2)"/>
+      <!-- decorative circles -->
+      <circle cx="650" cy="80" r="120" fill="rgba(200,120,10,0.12)"/>
+      <circle cx="100" cy="500" r="180" fill="rgba(255,255,255,0.04)"/>
+      <circle cx="400" cy="300" r="350" fill="none" stroke="rgba(255,209,102,0.08)" stroke-width="80"/>
+      <!-- bakery icons scattered -->
+      <text x="60" y="140" font-size="80" opacity="0.12" fill="white">🎂</text>
+      <text x="620" y="420" font-size="70" opacity="0.1" fill="white">🍩</text>
+      <text x="300" y="520" font-size="60" opacity="0.09" fill="white">🥐</text>
+      <text x="680" y="200" font-size="55" opacity="0.1" fill="white">☕</text>
+      <text x="30" y="380" font-size="50" opacity="0.09" fill="white">🍪</text>
+    </svg>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">📍 Ananthnagar, Electronic City · Bangalore</div>
+    <h1>Baked with Love,<br><em>Served with Attitude</em></h1>
+    <p class="hero-sub">Your favourite neighbourhood bakery & café in Electronic City.<br>Fresh cakes, donuts, burgers & more — every single day.</p>
+    <div class="hero-rating">
+      <span class="hero-stars">★★★★★</span>
+      <span>4.4 · 45+ Happy Customers</span>
+    </div>
+    <div class="hero-btns">
+      <a href="tel:+919880253525" class="btn-primary">📞 Call to Order</a>
+      <a href="#menu" class="btn-outline">🍩 View Menu</a>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item">🍩 Chocolate Donuts</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🎂 Butterscotch Cake</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🍔 Classic Burger</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🥪 Veg Sandwich</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">☕ Fresh Coffee</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🍮 Gulab Jamun</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🧁 Fresh Pastries</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🍩 Chocolate Donuts</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🎂 Butterscotch Cake</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🍔 Classic Burger</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🥪 Veg Sandwich</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">☕ Fresh Coffee</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🍮 Gulab Jamun</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+    <span class="ticker-item">🧁 Fresh Pastries</span>&nbsp;&nbsp;·&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-grid">
+    <div><div class="stat-num">4.4★</div><div class="stat-label">Google Rating</div></div>
+    <div><div class="stat-num">9AM–11PM</div><div class="stat-label">Open All Days</div></div>
+    <div><div class="stat-num">₹300</div><div class="stat-label">Avg for Two</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="section about fade-in" id="about">
+  <div class="container">
+    <div class="about-visual">
+      <div class="about-visual-inner">
+        <span class="about-visual-icon">🏪</span>
+        <div class="about-visual-text">Sweet Revenge Bake 'N' Cafe</div>
+        <div class="about-visual-sub">Ananthnagar, Electronic City, Bangalore</div>
+      </div>
+      <span class="about-badge">🏆 Neighbourhood Favourite</span>
+    </div>
+    <div class="section-label">Our Story</div>
+    <h2 class="section-title">About Sweet Revenge</h2>
+    <p class="about-text">Welcome to <strong>Sweet Revenge Bake 'N' Cafe</strong> — the beloved neighbourhood bakery right in the heart of Ananthnagar, Electronic City, Bangalore. We've been proudly serving the community with the finest baked goods and comfort food with a warm smile, every single day.</p>
+    <p class="about-text">From our signature <strong>chocolate donuts</strong> to creamy <strong>butterscotch cakes</strong>, crispy burgers and freshly made sandwiches — everything is crafted with care, quality ingredients and loads of love. Open 9AM to 11PM, 365 days a year.</p>
+    <p class="about-text">We're more than just a bakery — we're a neighbourhood institution. Come in, sit down, and let us take good care of you. 🍰</p>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section menu-section fade-in" id="menu">
+  <div class="menu-bg"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="section-label">What We Serve</div>
+    <h2 class="section-title">Our Menu Highlights</h2>
+    <p class="section-sub">Discover our most loved treats — made fresh daily</p>
+    <div class="filter-tabs">
+      <button class="filter-tab active" onclick="filterMenu('all',this)">All</button>
+      <button class="filter-tab" onclick="filterMenu('pastries',this)">🍩 Pastries</button>
+      <button class="filter-tab" onclick="filterMenu('cakes',this)">🎂 Cakes</button>
+      <button class="filter-tab" onclick="filterMenu('burgers',this)">🍔 Burgers</button>
+      <button class="filter-tab" onclick="filterMenu('sandwiches',this)">🥪 Sandwiches</button>
+      <button class="filter-tab" onclick="filterMenu('sweets',this)">🍮 Sweets</button>
+    </div>
+    <div class="menu-grid" id="menuGrid">
+
+      <div class="menu-card fade-in" data-cat="pastries">
+        <div class="menu-card-hero" style="background:linear-gradient(135deg,#3d1c00,#8B4513)">
+          <span class="menu-emoji">🍩</span>
+          <span class="menu-price">₹50</span>
+          <div class="veg-dot"><div class="veg-dot-inner"></div></div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-cat">Pastries</div>
+          <h3>Chocolate Donut</h3>
+          <p>Rich, fluffy donut with premium chocolate glaze — our #1 bestseller!</p>
+          <a href="https://wa.me/919880253525?text=Hi! I'd like to order a Chocolate Donut 🍩" class="btn-order" target="_blank">Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="menu-card fade-in" data-cat="cakes">
+        <div class="menu-card-hero" style="background:linear-gradient(135deg,#C8780A,#FFD166)">
+          <span class="menu-emoji">🎂</span>
+          <span class="menu-price">₹300</span>
+          <div class="veg-dot"><div class="veg-dot-inner"></div></div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-cat">Cakes</div>
+          <h3>Butterscotch Cake</h3>
+          <p>Creamy butterscotch layers with caramel drizzle — perfect for any celebration</p>
+          <a href="https://wa.me/919880253525?text=Hi! I'd like to order a Butterscotch Cake 🎂" class="btn-order" target="_blank">Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="menu-card fade-in" data-cat="burgers">
+        <div class="menu-card-hero" style="background:linear-gradient(135deg,#4a2000,#8B4513)">
+          <span class="menu-emoji">🍔</span>
+          <span class="menu-price">₹150</span>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-cat">Burgers</div>
+          <h3>Classic Burger</h3>
+          <p>Juicy patty with fresh veggies and our secret signature sauce</p>
+          <a href="https://wa.me/919880253525?text=Hi! I'd like to order a Classic Burger 🍔" class="btn-order" target="_blank">Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="menu-card fade-in" data-cat="sandwiches">
+        <div class="menu-card-hero" style="background:linear-gradient(135deg,#2e5c1e,#4caf50)">
+          <span class="menu-emoji">🥪</span>
+          <span class="menu-price">₹80</span>
+          <div class="veg-dot"><div class="veg-dot-inner"></div></div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-cat">Sandwiches</div>
+          <h3>Veg Sandwich</h3>
+          <p>Crunchy fresh vegetables with our signature spread on toasted bread</p>
+          <a href="https://wa.me/919880253525?text=Hi! I'd like to order a Veg Sandwich 🥪" class="btn-order" target="_blank">Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="menu-card fade-in" data-cat="sweets">
+        <div class="menu-card-hero" style="background:linear-gradient(135deg,#7b1fa2,#ce93d8)">
+          <span class="menu-emoji">🍮</span>
+          <span class="menu-price">₹60</span>
+          <div class="veg-dot"><div class="veg-dot-inner"></div></div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-cat">Sweets</div>
+          <h3>Gulab Jamun</h3>
+          <p>Soft melt-in-the-mouth gulab jamuns soaked in fragrant rose syrup</p>
+          <a href="https://wa.me/919880253525?text=Hi! I'd like to order Gulab Jamun 🍮" class="btn-order" target="_blank">Order on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="menu-card fade-in" data-cat="cakes">
+        <div class="menu-card-hero" style="background:linear-gradient(135deg,#880e4f,#f48fb1)">
+          <span class="menu-emoji">🎁</span>
+          <span class="menu-price">₹450+</span>
+          <div class="veg-dot"><div class="veg-dot-inner"></div></div>
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-cat">Cakes</div>
+          <h3>Custom Cakes</h3>
+          <p>Personalised cakes for birthdays, anniversaries & all special occasions</p>
+          <a href="https://wa.me/919880253525?text=Hi! I'd like to order a Custom Cake 🎂" class="btn-order" target="_blank">Order on WhatsApp</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section fade-in" id="gallery">
+  <div class="container">
+    <div class="section-label">Our Delights</div>
+    <h2 class="section-title">A Feast for the Eyes</h2>
+    <div class="gallery-grid">
+      <div class="gallery-card" style="background:linear-gradient(135deg,#3d1c00,#8B4513)">
+        <span style="font-size:5rem">🍩</span>
+        <div class="gallery-card-label">Fresh Donuts</div>
+      </div>
+      <div class="gallery-card" style="background:linear-gradient(135deg,#C8780A,#FFD166)">
+        <span style="font-size:5rem">🎂</span>
+        <div class="gallery-card-label">Custom Cakes</div>
+      </div>
+      <div class="gallery-card" style="background:linear-gradient(135deg,#2e5c1e,#66bb6a)">
+        <span style="font-size:5rem">🥪</span>
+        <div class="gallery-card-label">Sandwiches</div>
+      </div>
+      <div class="gallery-card" style="background:linear-gradient(135deg,#4a2000,#8B4513)">
+        <span style="font-size:5rem">🍔</span>
+        <div class="gallery-card-label">Burgers</div>
+      </div>
+      <div class="gallery-card" style="background:linear-gradient(135deg,#7b1fa2,#ba68c8)">
+        <span style="font-size:5rem">🍮</span>
+        <div class="gallery-card-label">Indian Sweets</div>
+      </div>
+      <div class="gallery-card" style="background:linear-gradient(135deg,#1a237e,#5c6bc0)">
+        <span style="font-size:5rem">☕</span>
+        <div class="gallery-card-label">Hot Beverages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="section why-section fade-in" id="why">
+  <div class="container">
+    <div class="section-label">Why Us</div>
+    <h2 class="section-title">What Makes Us Special</h2>
+    <div class="why-grid">
+      <div class="why-card"><span class="why-icon">🏠</span><h3>Homey Atmosphere</h3><p>Warm, welcoming space for family, friends & solo visits</p></div>
+      <div class="why-card"><span class="why-icon">👨‍💼</span><h3>Courteous Staff</h3><p>Friendly team making every visit memorable</p></div>
+      <div class="why-card"><span class="why-icon">🏆</span><h3>Quality & Hygiene</h3><p>Highest standards of food quality and cleanliness</p></div>
+      <div class="why-card"><span class="why-icon">🥗</span><h3>Veg-Friendly</h3><p>Extensive vegetarian menu for all preferences</p></div>
+      <div class="why-card"><span class="why-icon">📱</span><h3>Digital Payments</h3><p>UPI, cards & all digital modes accepted</p></div>
+      <div class="why-card"><span class="why-icon">🛵</span><h3>Quick Takeaway</h3><p>Call ahead and pick up your order fresh!</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERS -->
+<section class="section offers-section fade-in">
+  <div class="container">
+    <div class="section-label">Deals & Info</div>
+    <h2 class="section-title">What's On Offer</h2>
+    <div class="offers-grid">
+      <div class="offer-card">
+        <div class="offer-stripe" style="background:#C8780A"></div>
+        <div class="offer-body">
+          <span class="offer-badge" style="background:#FFF3E0;color:#C8780A">🎂 Celebration</span>
+          <h3>Custom Cakes on Order</h3>
+          <p>Planning a birthday or anniversary? Call us 24 hrs in advance and we'll bake your dream cake fresh — starting at ₹450.</p>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-stripe" style="background:#2e7d32"></div>
+        <div class="offer-body">
+          <span class="offer-badge" style="background:#E8F5E9;color:#2e7d32">🥗 Veg Special</span>
+          <h3>100% Vegetarian Options</h3>
+          <p>Extensive vegetarian menu — from veg sandwiches to sweets, there's something for everyone.</p>
+        </div>
+      </div>
+      <div class="offer-card">
+        <div class="offer-stripe" style="background:#1565C0"></div>
+        <div class="offer-body">
+          <span class="offer-badge" style="background:#E3F2FD;color:#1565C0">🛵 Takeaway</span>
+          <h3>Quick Takeaway Available</h3>
+          <p>Call us, place your order and pick it up fresh. No waiting — just great food ready for you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK INFO -->
+<section class="section info-section fade-in" id="info">
+  <div class="container">
+    <div class="section-label">Good to Know</div>
+    <h2 class="section-title">Quick Info</h2>
+    <div class="info-card">
+      <div class="info-row"><span class="info-label">Average Cost</span><span>₹300 for two people</span></div>
+      <div class="info-row"><span class="info-label">Meals Served</span><div class="tags-wrap"><span class="tag">Breakfast</span><span class="tag">Lunch</span><span class="tag">Dinner</span></div></div>
+      <div class="info-row"><span class="info-label">Cuisine</span><div class="tags-wrap"><span class="tag">Bakery</span><span class="tag">Fast Food</span><span class="tag">Sweets</span></div></div>
+      <div class="info-row" style="flex-direction:column;align-items:flex-start;gap:0.6rem">
+        <span class="info-label">Facilities</span>
+        <div class="tags-wrap">
+          <span class="tag tag-green">✓ Digital Payments</span>
+          <span class="tag tag-green">✓ Takeaway</span>
+          <span class="tag tag-green">✓ Indoor Seating</span>
+          <span class="tag tag-green">✓ Free Parking</span>
+          <span class="tag tag-green">✓ Veg Menu</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section reviews-section fade-in" id="reviews">
+  <div class="container">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title">Customer Reviews</h2>
+    <div class="rating-summary">
+      <div class="rating-big">4.4</div>
+      <div class="rating-stars-big">★★★★★</div>
+      <div class="rating-count">Based on 45+ customer ratings · Magicpin & Google</div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><div class="review-quote">"</div><div class="stars">★★★★★</div><p class="review-text">Best bakery in Electronic City! Their butterscotch cake is absolutely divine. The staff is so friendly and the ambiance is so cozy. Highly recommend to everyone in Ananthnagar!</p><div class="reviewer-name">Priya Sharma</div><div class="reviewer-date">February 2025</div></div>
+      <div class="review-card"><div class="review-quote">"</div><div class="stars">★★★★★</div><p class="review-text">I come here every weekend for their chocolate donuts and coffee. The quality is always consistent and the prices are very reasonable. Love this place so much!</p><div class="reviewer-name">Rajesh Kumar</div><div class="reviewer-date">January 2025</div></div>
+      <div class="review-card"><div class="review-quote">"</div><div class="stars">★★★★★</div><p class="review-text">Loved the quality of service, ambience, safety precautions, taste, and price. This is our go-to bakery in Ananthnagar. It never disappoints — always come back!</p><div class="reviewer-name">Rahul Rodge</div><div class="reviewer-date">December 2024</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section class="section visit-section fade-in" id="visit">
+  <div class="container">
+    <div class="section-label">Find Us</div>
+    <h2 class="section-title">Visit Us</h2>
+    <p class="section-sub">We're open every day to serve you — rain or shine ☀️</p>
+    <div class="visit-card">
+      <div class="visit-row"><div class="visit-icon">📍</div><div><div class="visit-label">Address</div><div class="visit-val">100/5, 2nd Cross, Ananthnagar,<br>2nd Phase, Electronic City, Bangalore – 560100</div></div></div>
+      <div class="visit-row"><div class="visit-icon">📞</div><div><div class="visit-label">Phone</div><div class="visit-val"><a href="tel:+919880253525">+91 98802 53525</a></div></div></div>
+      <div class="visit-row"><div class="visit-icon">🕐</div><div><div class="visit-label">Opening Hours</div><div class="visit-val">9:00 AM – 11:00 PM &nbsp;·&nbsp; All Days</div></div></div>
+      <div class="visit-row"><div class="visit-icon">💳</div><div><div class="visit-label">Payments</div><div class="visit-val">Cash · UPI · Cards · All Digital</div></div></div>
+      <div class="map-container">
+        <div class="map-icon">🗺️</div>
+        <div class="map-text">Ananthnagar, Electronic City</div>
+        <div class="map-sub">100/5, 2nd Cross, Phase 2, Bangalore</div>
+      </div>
+      <a href="https://maps.google.com/maps?q=12.83539206,77.69152522" target="_blank" class="btn-directions">📍 Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section fade-in">
+  <div class="cta-circles">
+    <div class="cta-circle" style="width:300px;height:300px;top:-100px;right:-80px"></div>
+    <div class="cta-circle" style="width:200px;height:200px;bottom:-60px;left:-60px"></div>
+  </div>
+  <div class="cta-inner">
+    <div class="section-label">Ready to Indulge?</div>
+    <h2>Craving Something Sweet?</h2>
+    <p>Call us or WhatsApp to place your order — custom cakes, bulk orders, all welcome! We'll have it fresh and ready for you. 🍰</p>
+    <div class="cta-btns">
+      <a href="tel:+919880253525" class="btn-primary">📞 Call Now</a>
+      <a href="https://wa.me/919880253525?text=Hi Sweet Revenge! I'd like to place an order 🍰" target="_blank" class="btn-outline">💬 WhatsApp Order</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">🍰 Sweet Revenge</div>
+  <div class="footer-tagline">Bake 'N' Cafe · Ananthnagar, Electronic City, Bangalore</div>
+  <div class="footer-links">
+    <a href="#about">About</a><a href="#menu">Menu</a><a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a><a href="#visit">Visit Us</a><a href="tel:+919880253525">📞 Call</a>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Sweet Revenge Bake 'N' Cafe. All rights reserved.</span>
+    <span class="footer-credit">Made with ❤️ for Sweet Revenge</span>
+  </div>
+</footer>
+
+<!-- FLOATS -->
+<a href="https://wa.me/919880253525?text=Hi Sweet Revenge! I'd like to place an order 🍰" class="whatsapp-float" target="_blank">💬</a>
+<a href="tel:+919880253525" class="call-float">📞</a>
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+  document.getElementById('backToTop').classList.toggle('show',window.scrollY>400);
+});
+document.getElementById('hamburger').addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+function filterMenu(cat,btn){
+  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.menu-card').forEach(card=>{
+    card.style.display=(cat==='all'||card.dataset.cat===cat)?'flex':'none';
+  });
+}
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
